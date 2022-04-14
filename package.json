@@ -1,13 +1,14 @@
 {
-  "name": "graph",
-  "widgetName": "Graph",
+  "name": "amap",
+  "widgetName": "Amap",
   "version": "1.0.1",
   "description": "My widget description",
   "packagePath": "mendixcn.native",
   "author": "wengao.liu@siemens.com",
   "dependencies": {
     "ahooks": "^2.10.14",
-    "classnames": "^2.2.6"
+    "classnames": "^2.2.6",
+    "react-native-amap3d": "^3.0.7"
   },
   "scripts": {
     "emulator": " start %LocalAppData%/Android/Sdk/emulator/emulator.exe -netdelay none -netspeed full -studio-params tests/emu.tmp -avd Pixel_2_API_29",
@@ -15,6 +16,8 @@
     "m": "npm install -g cnpm rollup prettier eslint --registry=https://registry.npmmirror.com",
     "x": "npm i --registry=https://registry.npmmirror.com",
     "testProject": "cmd /c git clone https://gitee.com/engalar/mendix-testproject-native-960.git --depth=1 ./tests/testProject && rd /s /q  .\\tests\\testProject\\.git",
+    "nativeTemplate": "cmd /c git clone https://github.com/mendix/native-template.git --depth=1 --branch release/6.2.0 ./tests/native-template && rd /s /q  .\\tests\\native-template\\.git",
+    "copyBundle": "cmd /c if exist tests/native-template/android/app/src/main (xcopy \"tests/testProject/deployment/native/bundle/android\" \"tests/native-template/android/app/src/main\" /Y /E) else echo native template not exist",
     "r": "node ./script/rename.js",
     "u": "node ./script/update.js",
     "prerelease": "npm run lint",
@@ -24,7 +27,7 @@
     "restoreTestProject": "cmd /c xcopy dummy tests\\testProject /E /Y",
     "start": "pluggable-widgets-tools start:native",
     "build": "pluggable-widgets-tools build:native",
-    "bundle": "\"C:\\Program Files\\Mendix\\9.6.0.27784\\modeler\\mxbuild.exe\" --java-home=\"%JAVA_HOME%\" --java-exe-path=\"%JAVA_HOME%/bin/java.exe\" --target=deploy --native-packager --loose-version-check tests\testProject\testProject.mpr",
+    "bundle": "C://\"Program Files\"/Mendix/9.6.0.27784/modeler/mxbuild.exe --java-home=\"%JAVA_HOME%\" --java-exe-path=\"%JAVA_HOME%/bin/java.exe\" --target=deploy --native-packager --loose-version-check ./tests/testProject/testProject.mpr",
     "format": "pluggable-widgets-tools format",
     "release": "pluggable-widgets-tools release:native",
     "lint": "eslint --config ../../../.eslintrc.js --ext .jsx,.js,.ts,.tsx src/",

@@ -21,10 +21,25 @@ curl https://gitee.com/engalar/mendix-pluggable-widget-template/raw/master/scrip
 
 ```cmd
 git config --global core.longpaths true
+set JAVA_HOME=C:\Program Files\AdoptOpenJDK\jdk-8.0.292.10-hotspot
+"C:\Android\android-sdk\tools\bin\sdkmanager.bat" --licenses
+%LocalAppData%/Android/Sdk/platform-tools/adb devices
 ```
 
-# bundle android/ios res
-
+# 准备mendix测试项目
 ```cmd
-"C:\Program Files\Mendix\9.6.0.27784\modeler\mxbuild.exe" --java-home="%JAVA_HOME%" --java-exe-path="%JAVA_HOME%/bin/java.exe" --target=deploy --native-packager --loose-version-check tests\testProject\testProject.mpr
+npm run testProject
+npm run openTestProject
+```
+
+# 准备移动开发环境
+```cmd
+npm run nativeTemplate
+npm run bundle
+npm run copyBundle
+
+cd tests\native-template
+npm i react-native-amap3d@^3.0.7
+npx react-native link react-native-amap3d
+npx react-native run-android --variant=DevDebug
 ```

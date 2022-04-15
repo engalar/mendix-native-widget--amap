@@ -1,9 +1,10 @@
-import { createElement, ReactElement, useEffect } from "react";
+import { createElement, ReactElement, useEffect, useMemo } from "react";
 import { AmapProps } from "../typings/AmapProps";
 import { AmapStyle } from "./ui/Styles";
-import { MapView, MapType } from "react-native-amap3d";
+import { MapView, MapType, Polyline, LatLng } from "react-native-amap3d";
 import { AMapSdk } from "react-native-amap3d";
 import { Platform } from 'react-native';
+import { ValueStatus } from "mendix";
 
 export function Amap(props: AmapProps<AmapStyle>): ReactElement {
     // const styles = flattenStyles(defaultAmapStyle, props.style);
@@ -16,6 +17,13 @@ export function Amap(props: AmapProps<AmapStyle>): ReactElement {
     //     );
     // }, [props.caption, styles]);
     console.log(props);
+    const points = useMemo<LatLng[]>(() => {
+        if (props.points.status == ValueStatus.Available) {
+            return props.points.items!.map(obj => ({ longitude: props.longitude.get(obj).value!.toNumber(), latitude: props.latitude.get(obj).value!.toNumber() }))
+        } else {
+            return [];
+        }
+    }, [props.points])
 
     useEffect(() => {
         AMapSdk.init(
@@ -32,14 +40,16 @@ export function Amap(props: AmapProps<AmapStyle>): ReactElement {
 
     return (
         <MapView
-            mapType={MapType.Satellite}
+            mapType={MapType.Standard}
             initialCameraPosition={{
                 target: {
                     latitude: 39.91095,
                     longitude: 116.37296,
                 },
-                zoom: 8,
+                zoom: 14,
             }}
-        />
+        >
+            <Polyline color={'#3366FF'} width={8} points={points}></Polyline>
+        </MapView>
     );
 }

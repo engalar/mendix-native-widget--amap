@@ -1,26 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget id="mendixcn.native.amap.Amap" pluginWidget="true" needsEntityContext="true" offlineCapable="true" supportedPlatform="Native" xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+<widget id="mendixcn.native.amap.Amap" pluginWidget="true" needsEntityContext="true" offlineCapable="true" supportedPlatform="Native"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
     <name>Amap</name>
     <description>My widget description</description>
     <studioProCategory>Display</studioProCategory>
     <studioCategory>Display</studioCategory>
     <icon/>
     <properties>
-        <propertyGroup caption="General">
-            <propertyGroup caption="General">
-                <property key="caption" type="textTemplate">
-                    <caption>Caption</caption>
-                    <description/>
+        <propertyGroup caption="通用">
+            <propertyGroup caption="数据源">
+                <property key="points" type="datasource" isList="true" required="true">
+                    <caption>途经点</caption>
+                    <description></description>
                 </property>
-            </propertyGroup>
-            <propertyGroup caption="Events">
-                <property key="onClick" type="action" required="false">
-                    <caption>On click</caption>
-                    <description/>
+                <property key="latitude" type="attribute" required="true" dataSource="points">
+                    <caption>纬度</caption>
+                    <description></description>
+                    <attributeTypes>
+                        <attributeType name="Decimal" />
+                    </attributeTypes>
                 </property>
-            </propertyGroup>
-            <propertyGroup caption="Common">
-                <systemProperty key="Name"/>
+                <property key="longitude" type="attribute" dataSource="points" required="true">
+                    <caption>经度</caption>
+                    <description></description>
+                    <attributeTypes>
+                        <attributeType name="Decimal" />
+                    </attributeTypes>
+                </property>
             </propertyGroup>
         </propertyGroup>
     </properties>

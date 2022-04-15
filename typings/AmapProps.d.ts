@@ -4,13 +4,15 @@
  * @author Mendix UI Content Team
  */
 import { CSSProperties } from "react";
-import { ActionValue, DynamicValue } from "mendix";
+import { ListValue, ListAttributeValue } from "mendix";
+import { Big } from "big.js";
 
 export interface AmapProps<Style> {
     name: string;
     style: Style[];
-    caption: DynamicValue<string>;
-    onClick?: ActionValue;
+    points: ListValue;
+    latitude: ListAttributeValue<Big>;
+    longitude: ListAttributeValue<Big>;
 }
 
 export interface AmapPreviewProps {
@@ -18,6 +20,7 @@ export interface AmapPreviewProps {
     style: string;
     styleObject?: CSSProperties;
     readOnly: boolean;
-    caption: string;
-    onClick: {} | null;
+    points: {} | { type: string } | null;
+    latitude: string;
+    longitude: string;
 }

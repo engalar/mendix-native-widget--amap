@@ -1,3 +1,4 @@
+![](img/amap.png)
 # mendix 前端组件开发模板库
 
 重命名
